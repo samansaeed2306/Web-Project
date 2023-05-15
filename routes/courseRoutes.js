@@ -4,12 +4,11 @@ const {createCourse, getCourse, getAllCourses, deleteCourse, enrollStudent, upda
 const courseRoutes = require("express").Router();
 
 
-
+//CRUDS
 
 courseRoutes.post("/createCourse" ,createCourse)
-courseRoutes.post("/enrollStudent" ,enrollStudent)
+courseRoutes.post("/enrollStudent/:id" ,enrollStudent)
 courseRoutes.put("/updateCourse/:id" ,updateCourse)
-// courseRoutes.get("/getCoursee" ,getCourse)
 courseRoutes.get("/getAllCourses" ,getAllCourses)
 courseRoutes.delete("/deleteCourse/:id" ,deleteCourse)
 module.exports = courseRoutes;
