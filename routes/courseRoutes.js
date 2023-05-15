@@ -6,7 +6,7 @@ const courseRoutes = require("express").Router();
 
 //CRUDS
 
-courseRoutes.post("/createCourse" ,createCourse)
+courseRoutes.post("/createCourse",DecodeUser,CheckIfAdmin,createCourse)
 courseRoutes.post("/enrollStudent/:id" ,enrollStudent)
 courseRoutes.put("/updateCourse/:id" ,updateCourse)
 courseRoutes.get("/getAllCourses" ,getAllCourses)

@@ -2,6 +2,9 @@ const Course = require('../models/courseModel');
 
 
 
+
+
+
 // Create a new course
 const createCourse = async (req, res) => {
   try {
