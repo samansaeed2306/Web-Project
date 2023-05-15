@@ -1,104 +1,125 @@
 const Course = require('../models/courseModel');
 
-async function createCourse(req, res) {
+
+
+// Create a new course
+const createCourse = async (req, res) => {
   try {
-    const { title, description, instructor, duration, price } = req.body;
+    const {
+      title,
+      description,
+      instructor,
+      duration,
+      price,
+      start_date
+    } = req.body;
+
     const course = new Course({
       title,
       description,
       instructor,
       duration,
       price,
+      start_date
     });
-    await course.save();
-    res.status(201).json(course);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server Error' });
-  }
-}
 
-async function getCourse(req, res) {
-  try {
-    const { id } = req.params;
-    const course = await Course.findById(id);
-    if (!course) {
-      return res.status(404).json({ message: 'Course not found' });
-    }
-    res.json(course);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+    const savedCourse = await course.save();
+    res.status(201).json(savedCourse);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
-}
+};
 
-async function getAllCourses(req, res) {
+// Get all courses
+const getAllCourses = async (req, res) => {
   try {
-    const courses = await Course.find();
+    const courses = await Course.find().populate('instructor', 'firstName lastName').populate('students', 'firstName lastName');
     res.json(courses);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-}
+};
 
-async function updateCourse(req, res) {
+// Get a course by ID
+const getCourseById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { title, description, instructor, duration, price } = req.body;
-    const course = await Course.findById(id);
+    const courseId = req.params.id;
+    const course = await Course.findById(courseId).populate('instructor', 'firstName lastName').populate('students', 'firstName lastName');
+
     if (!course) {
-      return res.status(404).json({ message: 'Course not found' });
+      return res.status(404).json({ error: 'Course not found' });
     }
-    course.title = title || course.title;
-    course.description = description || course.description;
-    course.instructor = instructor || course.instructor;
-    course.duration = duration || course.duration;
-    course.price = price || course.price;
-    await course.save();
+
     res.json(course);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-}
+};
 
-async function deleteCourse(req, res) {
+// Enroll a student in a course
+const enrollStudent = async (req, res) => {
   try {
-    const { id } = req.params;
-    const course = await Course.findByIdAndDelete(id);
+    const courseId = req.params.id;
+    const studentId = req.body.studentId;
+
+    const course = await Course.findById(courseId);
+
     if (!course) {
-      return res.status(404).json({ message: 'Course not found' });
+      return res.status(404).json({ error: 'Course not found' });
     }
+
+    course.students.push(studentId);
+    await course.save();
+
+    res.json(course);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Update a course
+const updateCourse = async (req, res) => {
+  try {
+    const courseId = req.params.id;
+    const updates = req.body;
+
+    const course = await Course.findByIdAndUpdate(courseId, updates, {
+      new: true,
+      runValidators: true
+    });
+
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
+    res.json(course);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// Delete a course
+const deleteCourse = async (req, res) => {
+  try {
+    const courseId = req.params.id;
+
+    const course = await Course.findByIdAndDelete(courseId);
+
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+
     res.json({ message: 'Course deleted successfully' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server Error' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-}
-
-async function addStudentToCourse(req, res) {
-  try {
-    const { id } = req.params;
-    const { student } = req.body;
-    const course = await Course.findById(id);
-    if (!course) {
-      return res.status(404).json({ message: 'Course not found' });
-    }
-    course.students.push(student);
-    await course.save();
-    res.json(course);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server Error' });
-  }
-}
+};
 
 module.exports = {
   createCourse,
-  getCourse,
   getAllCourses,
+  getCourseById,
+  enrollStudent,
   updateCourse,
-  deleteCourse,
-  addStudentToCourse,
+  deleteCourse
 };

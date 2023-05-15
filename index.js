@@ -15,6 +15,7 @@ app.use(express.urlencoded({extended:false}))
 
 
  app.use('/course',require('./routes/courseRoutes'))
+ app.use('/user',require('./routes/userRoutes'))
 
 app.listen(port, ()=>{ console.log(`App listening on port ${port}`)
 

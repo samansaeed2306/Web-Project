@@ -1,5 +1,5 @@
 
-const {createCourse, getCourse, getAllCourses, deleteCourse} = require("../controllers/courseController")
+const {createCourse, getCourse, getAllCourses, deleteCourse, enrollStudent, updateCourse} = require("../controllers/courseController")
 
 const courseRoutes = require("express").Router();
 
@@ -7,7 +7,9 @@ const courseRoutes = require("express").Router();
 
 
 courseRoutes.post("/createCourse" ,createCourse)
-courseRoutes.get("/getCoursee" ,getCourse)
+courseRoutes.post("/enrollStudent" ,enrollStudent)
+courseRoutes.put("/updateCourse/:id" ,updateCourse)
+// courseRoutes.get("/getCoursee" ,getCourse)
 courseRoutes.get("/getAllCourses" ,getAllCourses)
-courseRoutes.delete("/deleteCourse" ,deleteCourse)
+courseRoutes.delete("/deleteCourse/:id" ,deleteCourse)
 module.exports = courseRoutes;

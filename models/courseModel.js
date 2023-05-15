@@ -10,7 +10,8 @@ const courseSchema = new mongoose.Schema({
     required: true
   },
   instructor: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true
   },
   duration: {
@@ -21,10 +22,12 @@ const courseSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  students: {
-    type: [String],
-    default: []
-  },
+  students: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
   start_date: {
     type: Date,
     default: Date.now()
@@ -32,5 +35,4 @@ const courseSchema = new mongoose.Schema({
 });
 
 const Course = mongoose.model('Course', courseSchema);
-
 module.exports = Course;
