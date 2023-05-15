@@ -1,5 +1,6 @@
 
 const {createCourse, getCourse, getAllCourses, deleteCourse, enrollStudent, updateCourse} = require("../controllers/courseController")
+const {CheckIfAdmin,DecodeUser }=require('../controllers/middlewares')
 
 const courseRoutes = require("express").Router();
 

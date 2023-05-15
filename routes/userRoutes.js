@@ -1,4 +1,5 @@
 const { createUser,getAllUsers,updateUser,deleteUser,login} = require("../controllers/userController")
+const {CheckIfAdmin,DecodeUser }=require('../controllers/middlewares')
 const userRoutes = require("express").Router();
 
 
