@@ -7,7 +7,7 @@ const upload=require("express-fileupload")
 
 const session=require("express-session")
 const passport=require("passport")
-app.use(session({secret:"cats"}))
+app.use(session({secret:process.env.sessionId}))
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -31,7 +31,7 @@ app.use(express.urlencoded({extended:false}))
     req.user ? next() : res.sendStatus(401)
  }
  app.get('/',(req,res)=>{
-    res.send('<a href="/auth/google">Authenticate With Google</a>')
+    res.send('<a href="/auth/google">Google Authentication</a>')
  })
  app.get('/auth/google',
  passport.authenticate('google',{scope:['email','profile']}))

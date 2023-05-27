@@ -4,33 +4,30 @@ const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-async function login(req, res) {
-  const { email, password } = req.body;
+//login controller
+let login = (req , res)=>{
+  let {email , password} = req.body;
 
-  try {
-    // Check if the user exists
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    // Check if the password is correct
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
-      return res.status(401).json({ error: 'Invalid password' });
-    }
-
-    // Create and sign the JWT token
-    const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });
-
-    res.json({ token });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+  User.findOne({email:email}).then((user)=>{
+      if(user.password == password){
+          let token = jwt.sign({
+              email:user.email,
+              password:user.password,
+              role: user.role} , 
+              process.env.SECRET_KEY, {
+                  expiresIn: "24h"
+              }
+              )
+          res.status(200).json({"Message":"Login Succsessfull" , user:user, token})
+      }else{
+          res.status(500).json({"Message":"Login Not successful"})
+      }
   }
+  ).catch(err=>{
+      res.status(500).json({"Message":"Login Failed" , err:err})
+  }
+  )
 }
-
-
 
 // Create a new user
 const createUser = async (req, res) => {

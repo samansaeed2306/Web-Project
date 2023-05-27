@@ -1,5 +1,8 @@
+const jwt=require('jsonwebtoken');
+
+//this middleware decodes the token created after login
 let DecodeUser = (req , res , next)=>{
-    let token = req.body.token;
+    let token = req.headers["authorization"].split(" ")[1];;
      
     jwt.verify(token , process.env.SECRET_KEY , (err , decoded)=>{
         if(!err){
@@ -14,7 +17,7 @@ let DecodeUser = (req , res , next)=>{
     )
 }
 
-
+//middleware to verify the student
 let CheckIfStudent = (req , res , next)=>{
     
     if(req.decoded.role == "student"){
@@ -24,18 +27,20 @@ let CheckIfStudent = (req , res , next)=>{
     }
 }
 
+//middleware to verify the admin
 let CheckIfAdmin = (req , res , next)=>{
     
-    if(req.decoded.role == "admin"){
+    if(req.decoded.role == "admin" ){
         next();
     }else{
         res.status(403).json({"Message":"Not Authorized as Admin"})
     }
 }
 
-let CheckIfInstructor = (req , res , next)=>{
+//middleware to verify the admin or instructor (any of these can be authorized to perform)
+let CheckIfAdminorInstructor = (req , res , next)=>{
     
-    if(req.decoded.role == "instructor"){
+    if(req.decoded.role == "instructor" ||req.decoded.role == "instructor"){
         next();
     }else{
         res.status(403).json({"Message":"Not Authorized as Admin"})
@@ -44,6 +49,6 @@ let CheckIfInstructor = (req , res , next)=>{
 module.exports = {
     CheckIfStudent,
     CheckIfAdmin,
-    CheckIfInstructor,
+    CheckIfAdminorInstructor,
     DecodeUser
 }
