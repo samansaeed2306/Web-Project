@@ -1,0 +1,16 @@
+/* CSS */
+@import url('https://fonts.googleapis.com/css2?family=FunkyFont');
+
+.funky-font {
+  font-family: 'FunkyFont', cursive;
+}
+
+
+  
+.body-content {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_va3RFHJpL9I-N1Y7igIQMxxUlE-fjdC7kKr4oa8bO1wN3zoSABd9ByhObDNkIlU5sH8&usqp=CAU');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: calc(100vh - 56px); /* Adjust the value to account for the navbar height */
+  }
