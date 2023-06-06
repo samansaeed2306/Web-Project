@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import './card.css';
 
-function Card({ id, title, description, role, onDeleteUser }) {
+function Card({ id, title, description, role, onDeleteUser, onUpdateUser }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [updatedTitle, setUpdatedTitle] = useState(title);
+  const [updatedDescription, setUpdatedDescription] = useState(description);
+
   const handleDelete = async () => {
     const confirmDelete = window.confirm('Are you sure you want to delete this user?');
     if (confirmDelete) {
       try {
-        const response = await fetch(`http://localhost:5000/user/deleteUser/${id}`, {
-          method: 'DELETE',
-        });
-
-        if (response.ok) {
+        const response = await axios.delete(`http://localhost:5000/user/deleteUser/${id}`);
+        if (response.status === 200) {
           onDeleteUser(id);
         } else {
           console.error('Error deleting user:', response.status);
@@ -18,6 +20,33 @@ function Card({ id, title, description, role, onDeleteUser }) {
       } catch (error) {
         console.error('Error deleting user:', error);
       }
+    }
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+  };
+
+  const handleUpdate = async () => {
+    try {
+      const response = await axios.put(`http://localhost:5000/user/updateUser/${id}`, {
+        firstName: updatedTitle,
+        email: updatedDescription
+      });
+
+      if (response.status === 200) {
+        const updatedUser = response.data;
+        setIsEditing(false);
+        onUpdateUser(updatedUser); // Update the user in the UI with the updated user
+      } else {
+        console.error('Error updating user:', response.status);
+      }
+    } catch (error) {
+      console.error('Error updating user:', error);
     }
   };
 
@@ -34,16 +63,51 @@ function Card({ id, title, description, role, onDeleteUser }) {
         </a>
       </div>
       <div className="card-body">
-        <h5 className="card-title">{title}</h5>
-        <p className="card-text">{description}</p>
-        <div className="button-container">
-          <button className="btn btn-primary btn-dark edit">
-            <i className="fas fa-edit"></i>
-          </button>
-          <button className="btn btn-danger" onClick={handleDelete}>
-            <i className="fas fa-trash"></i>
-          </button>
-        </div>
+        {!isEditing ? (
+          <>
+            <h5 className="card-title">{title}</h5>
+            <p className="card-text">{description}</p>
+            <div className="button-container">
+              <button className="btn btn-primary btn-dark edit" onClick={handleEdit}>
+                <i className="fas fa-edit"></i>
+              </button>
+              <button className="btn btn-danger" onClick={handleDelete}>
+                <i className="fas fa-trash"></i>
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="form-group">
+              <label htmlFor="title">Title</label>
+              <input
+                type="text"
+                id="title"
+                className="form-control"
+                value={updatedTitle}
+                onChange={(e) => setUpdatedTitle(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <input
+                type="text"
+                id="description"
+                className="form-control"
+                value={updatedDescription}
+                onChange={(e) => setUpdatedDescription(e.target.value)}
+              />
+            </div>
+            <div className="button-container">
+              <button className="btn btn-primary" onClick={handleUpdate}>
+                Update
+              </button>
+              <button className="btn btn-secondary" onClick={handleCancelEdit}>
+                Cancel
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

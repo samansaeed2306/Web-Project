@@ -24,6 +24,12 @@ function GetUsers() {
     setData((prevData) => prevData.filter((user) => user._id !== userId));
   };
 
+  const handleUpdateUser = (updatedUser) => {
+    setData((prevData) =>
+      prevData.map((user) => (user._id === updatedUser._id ? updatedUser : user))
+    );
+  };
+
   return (
     <div>
       <Navbar />
@@ -31,11 +37,12 @@ function GetUsers() {
         {data.map((item) => (
           <Card
             key={item._id}
-            id={item._id} // Use 'id' prop instead of 'key'
+            id={item._id}
             title={item.firstName}
             description={item.email}
             role={item.role}
             onDeleteUser={handleDeleteUser}
+            onUpdateUser={handleUpdateUser}
           />
         ))}
       </div>
