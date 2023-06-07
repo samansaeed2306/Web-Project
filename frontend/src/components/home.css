@@ -1,0 +1,38 @@
+h1{
+    font-family: 'FunkyFont', cursive;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: -50px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+
+
+  
+  .link-container {
+    margin-top: 20px;
+  }
+  
+
+  .get-started-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e6ecf2;
+    color: #0f0e0e;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'FunkyFont', cursive;
+  }
+  
+  .get-started-link:hover {
+    background-color: #a9b6c4;
+  }

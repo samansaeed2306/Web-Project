@@ -5,6 +5,7 @@
     overflow: hidden;
     padding: 20px;
     margin: 10px;
+    background-color: #f6f2f8; /* Add a unique color here */
 
   }
   
@@ -95,6 +96,7 @@
     flex-wrap: wrap;
     justify-content: center;
     padding: 20px;
+    margin-top: 2rem;
   }
   
 

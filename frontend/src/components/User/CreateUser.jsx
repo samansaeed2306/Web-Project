@@ -13,6 +13,7 @@ import {
   MDBCheckbox,
   MDBIcon
 } from 'mdb-react-ui-kit';
+import AdminNavbar from '../Admin/AdminNavbar';
 
 
 function CreateUser() {
@@ -53,7 +54,10 @@ function CreateUser() {
       });
   };
   return (
-    <div>
+    <>
+    <AdminNavbar/>
+    <div className="create-user-container">
+
     {showAlert && (
       <div className={`alert ${alertType}`}>
         {alertMessage}
@@ -65,20 +69,20 @@ function CreateUser() {
         className="p-5 bg-image"
         style={{
           backgroundImage:
-            'url(https://mdbootstrap.com/img/new/textures/full/171.jpg)',
+            'url(https://i.pinimg.com/originals/cf/21/44/cf2144d3931f386de487524133f43ba2.jpg)',
           height: '300px',
         }}
       ></div>
 
       <MDBCard
-        className="mx-5 mb-5 p-5 shadow-5"
+        className="mx-5 mb-5 p-5 shadow-5 w-100 card-width"
         style={{
           marginTop: '-100px',
           background: 'hsla(0, 0%, 100%, 0.8)',
           backdropFilter: 'blur(30px)',
         }}
       >
-        <MDBCardBody className="p-5 text-center">
+        <MDBCardBody className="p-5 text-center custom-card-body">
           <h2 className="fw-bold mb-5">Create New User</h2>
 
           <MDBRow>
@@ -187,6 +191,7 @@ function CreateUser() {
       </MDBCard>
     </MDBContainer>
     </div>
+    </>
   );
 }
 

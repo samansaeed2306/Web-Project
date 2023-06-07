@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-import './navbar.css';
+import { Link } from 'react-router-dom';
+import './adminnavbar.css';
 
 function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const handleAvatarClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleUsersClick = () => {
+    setIsActive(true);
     setIsDropdownOpen(!isDropdownOpen);
   };
 
@@ -25,13 +32,13 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
+            <li className={`nav-item ${isActive ? 'active' : ''}`}>
+              <a className="nav-link" aria-current="page" href="#">Home</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">About</a>
+              <a className="nav-link" href="#">Courses</a>
             </li>
-            <li className="nav-item dropdown">
+            <li className={`nav-item dropdown ${isActive ? 'active' : ''}`}>
               <a
                 className="nav-link dropdown-toggle"
                 href="#"
@@ -39,21 +46,16 @@ function Navbar() {
                 role="button"
                 data-mdb-toggle="dropdown"
                 aria-expanded="false"
+                onClick={handleUsersClick}
               >
-                Courses
+                Users
               </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`} aria-labelledby="navbarDropdown">
                 <li>
-                  <a className="dropdown-item" href="#c1">Linear Algebra</a>
+                  <Link className="dropdown-item" to="/getUser">Users List</Link>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#c2">Programming Fundamentals</a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">Something else here</a>
+                <Link className="dropdown-item" to="/createUser">Create User</Link>
                 </li>
               </ul>
             </li>

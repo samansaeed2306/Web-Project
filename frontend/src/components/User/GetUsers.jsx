@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../Card';
+import { Link } from 'react-router-dom'
 import '../card.css';
 import Navbar from '../Navbar';
+import AdminNavbar from '../Admin/AdminNavbar';
+import './getusers.css'; // Import the CSS file for GetUsers component
 
 function GetUsers() {
   const [data, setData] = useState([]);
@@ -32,7 +35,14 @@ function GetUsers() {
 
   return (
     <div>
-      <Navbar />
+      <AdminNavbar />
+      {/* Add the "Add User" button */}
+      <Link to="/createUser"> <div className="add-user-button">
+        <i className="fas fa-plus"></i>
+        </div>
+      </Link>
+      <div className="get-users-container">
+        <div className="bg-image"></div>
       <div className="card-container">
         {data.map((item) => (
           <Card
@@ -46,6 +56,8 @@ function GetUsers() {
           />
         ))}
       </div>
+      </div>
+      
     </div>
   );
 }
