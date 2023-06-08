@@ -31,7 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    ;
     background-color: #f8f9fa;
     
   }
@@ -152,6 +152,11 @@
    
    
   }
+
+  .custom-card-height {
+    height: 670px; /* Set the desired height */
+  }
+  
   
   .custom-card-body {
     width: 600px;
@@ -160,4 +165,7 @@
   
   }
   
+  .custom-input {
+    width: 200px; /* Set the desired width */
+  }
   

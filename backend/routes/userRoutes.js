@@ -1,4 +1,4 @@
-const { createUser,getAllUsers,updateUser,deleteUser,login,getUserById} = require("../controllers/userController")
+const { createUser,getAllUsers,updateUser,deleteUser,login,getUserById,getUserAnalytics} = require("../controllers/userController")
 const {CheckIfAdmin,DecodeUser }=require('../controllers/middlewares')
 const userRoutes = require("express").Router();
 
@@ -13,6 +13,7 @@ userRoutes.put("/updateUser/:id",DecodeUser,CheckIfAdmin,updateUser)
 userRoutes.delete("/deleteUser/:id",DecodeUser,CheckIfAdmin,deleteUser)
 //Only admin is authorized to read all users
 userRoutes.get("/getAllUsers",DecodeUser,CheckIfAdmin,getAllUsers)
+userRoutes.get("/getUserAnalytics",getUserAnalytics)
 //Only admin is authorized to read a user
 userRoutes.get("/getUserById/:id",DecodeUser,CheckIfAdmin,getUserById)
 

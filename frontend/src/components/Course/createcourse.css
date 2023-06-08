@@ -1,0 +1,26 @@
+.container {
+    max-width: 400px; /* Adjust the maximum width as desired */
+    margin: 0 auto; /* Center the container horizontally */
+  }
+  
+  .container h2 {
+    font-size: 24px; /* Adjust the font size as desired */
+  }
+  
+  .container form {
+    margin-top: 20px; /* Adjust the top margin as desired */
+  }
+  
+  /* .container input[type="text"],
+  .container input[type="number"] {
+    height: 30px; /* Adjust the input height as desired */
+    /* font-size: 14px; /* Adjust the input font size as desired */
+
+   
+  /* .container .btn {
+    margin-top: 20px; /* Adjust the top margin of the button as desired */
+
+  
+  /* .container input[type="text"],
+.container input[type="number"] {
+  width: 100%; /* Increase the width to occupy the full container width */

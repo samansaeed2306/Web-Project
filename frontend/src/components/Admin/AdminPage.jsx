@@ -10,7 +10,7 @@ function AdminPage() {
     <div>
       <AdminNavbar />
       <div className="container">
-        <h1>Admin Panel</h1>
+        <h1 style={{ color: 'black' }}>ADMIN PANEL</h1>
         <div className="link-container">
           {/* <Link to="/login" className="get-started-link">Get Started</Link> */}
         </div>

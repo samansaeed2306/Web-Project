@@ -33,10 +33,11 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className={`nav-item ${isActive ? 'active' : ''}`}>
-              <a className="nav-link" aria-current="page" href="#">Home</a>
+              <Link to='/adminpage' className="nav-link" aria-current="page">Home</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Courses</a>
+
+              <Link to="/course" className="nav-link">Courses</Link>
             </li>
             <li className={`nav-item dropdown ${isActive ? 'active' : ''}`}>
               <a
@@ -56,6 +57,9 @@ function Navbar() {
                 </li>
                 <li>
                 <Link className="dropdown-item" to="/createUser">Create User</Link>
+                </li>
+                <li>
+                <Link className="dropdown-item" to="/userAnalytics">Analyse Users</Link>
                 </li>
               </ul>
             </li>

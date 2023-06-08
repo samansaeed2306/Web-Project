@@ -1,0 +1,35 @@
+.btn{
+    background-color:  #9983b7;
+}
+
+.btn:hover{
+    color: #583d71; 
+}
+.hello {
+    /* Define the default text color */
+    color:#9983b7; /* or any other color you prefer */
+  }
+  
+
+  
+
+  .btn-lg:hover{
+    color: #583d71; 
+  }
+
+  .showcase-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .showcase-text {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .showcase-image {
+    width: 50%;
+    justify-content: flex-end;
+  }
+  

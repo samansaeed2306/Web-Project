@@ -119,11 +119,32 @@ const deleteUser = async (req, res) => {
   }
 };
 
+
+
+// Function to get user analytics
+const getUserAnalytics = async (req, res) => {
+  try {
+    // Count the number of users by role using your preferred database query
+    const studentCount = await User.countDocuments({ role: 'student' });
+    const adminCount = await User.countDocuments({ role: 'admin' });
+    const instructorCount = await User.countDocuments({ role: 'instructor' });
+
+    // Return the user analytics as JSON
+    res.json({ studentCount, adminCount, instructorCount });
+  } catch (error) {
+    console.error('Error retrieving user analytics:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserById,
   updateUser,
   deleteUser,
-  login
+  login,getUserAnalytics
 };

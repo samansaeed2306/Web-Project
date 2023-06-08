@@ -15,10 +15,17 @@ function GetUsers() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/user/getAllUsers');
-      const jsonData = await response.json();
-      setData(jsonData);
-    } catch (error) {
+      const token = localStorage.getItem('token');
+
+      const response = await fetch('http://localhost:5000/user/getAllUsers', {
+      headers: {
+        Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+      },
+    });
+
+    const jsonData = await response.json();
+    setData(jsonData);
+  } catch (error) {
       console.error('Error fetching data:', error);
     }
   };

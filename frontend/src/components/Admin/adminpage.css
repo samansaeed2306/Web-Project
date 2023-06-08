@@ -63,3 +63,17 @@
     font-family: 'Comic Sans MS', cursive;
   }
   
+  h1{
+    font-family: 'Comic Sans MS', cursive;
+    color: black;
+  }
+
+  .container h1 {
+    color: black;
+    font-family: 'Comic Sans MS', cursive;/* Change the font family to your desired font */
+    font-size: 28px; /* Change the font size as needed */
+  font-weight: 800; /* Increase the font weight for a bolder effect */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a text shadow for effect */
+    /* Add any additional styles or effects you want */
+  }
+  

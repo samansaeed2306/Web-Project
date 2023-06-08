@@ -25,6 +25,8 @@ function Login() {
     try {
       const response = await axios.post('http://localhost:5000/user/login', { email, password });
       console.log(response.data);
+      localStorage.setItem('token', response.data.token);
+      console.log(response.data.token)
       setAlertType('alert-success');
       setAlertMessage('User logged in successfully!');
       setShowAlert(true);
@@ -52,7 +54,7 @@ function Login() {
               <h2 className='fw-bold mb-2 text-uppercase'>Login</h2>
               <p className='text-white-50 mb-5'>Please enter your login and password!</p>
               <MDBInput
-                wrapperClass='mb-4 mx-5 w-350'
+                wrapperClass='mb-4 mx-5 w-500'
                 labelClass='text-white'
                 label='Email address'
                 id='formControlLg'
