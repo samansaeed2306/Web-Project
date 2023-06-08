@@ -36,7 +36,7 @@ app.use(express.urlencoded({extended:false}))
 //  app.get('/',(req,res)=>{
 //     res.send('<a href="/auth/google">Google Authentication</a>')
 //  })
-app.use('*', function(req,res){
+app.use('*', function(req, res){
    res.sendFile(path.join(__dirname, './frontend/build/index.html'))
 })
  app.get('/auth/google',
