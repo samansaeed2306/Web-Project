@@ -1,0 +1,171 @@
+.alert {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    color: #212529;
+    padding: 0px;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 50px; /* Adjust this value based on your navbar's height */
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 1;
+  }
+
+ 
+  
+  .alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+  }
+  
+  .alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+  }
+
+  .create-user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ;
+    background-color: #f8f9fa;
+    
+  }
+  
+  .alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+  }
+  
+  .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+  
+  .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+  
+  .bg-image {
+    background-size: cover;
+    background-position: center center;
+  }
+  
+  @media (min-width: 576px) {
+    .mx-auto {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+  }
+  
+  .shadow-5 {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.12), 0 2px 10px 0 rgba(0, 0, 0, 0.08);
+  }
+  
+  .backdrop-filter {
+    backdrop-filter: blur(10px);
+  }
+  
+  .mt-5 {
+    margin-top: 3rem !important;
+  }
+  
+  .p-5 {
+    padding: 3rem !important;
+  }
+  
+  .text-center {
+    text-align: center !important;
+  }
+  
+  .mb-5 {
+    margin-bottom: 3rem !important;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .mb-4:not(:last-child) {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .mb-4:not(:first-child) {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .mr-4 {
+    margin-right: 1.5rem !important;
+  }
+  
+  .mx-3 {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+  }
+  
+  .w-100 {
+    width: 100% !important;
+  }
+  
+  .p-5 {
+    padding: 3rem !important;
+  }
+  
+  .bg-white {
+    background-color: #fff !important;
+  }
+  
+  .rounded-0 {
+    border-radius: 0 !important;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .text-center {
+    text-align: center !important;
+  }
+  
+  .fw-bold {
+    font-weight: bold !important;
+  }
+  
+  .card-width {
+    width: 500px;
+  
+    margin-right: 20px;
+  
+  }
+  
+  .w-100 {
+    width: 60% !important;
+   
+   
+  }
+
+  .custom-card-height {
+    height: 670px; /* Set the desired height */
+  }
+  
+  
+  .custom-card-body {
+    width: 600px;
+    margin: 0 auto;
+    padding-left: 10rem;
+  
+  }
+  
+  .custom-input {
+    width: 200px; /* Set the desired width */
+  }
+  
